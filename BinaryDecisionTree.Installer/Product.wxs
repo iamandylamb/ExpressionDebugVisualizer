@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <?define ProductManufacturer = "Andy Lamb" ?>
+  <?define ProductName = "Expression Debug Visualizer" ?>
+  <?define ProductVersion = "1.1.0" ?>
+
+  <Product 
+    Id="*" 
+    UpgradeCode="8BC2C810-F0DE-4435-B02F-92055693219C"
+    Name="$(var.ProductName)" 
+    Manufacturer="$(var.ProductManufacturer)"
+    Language="1033" 
+    Version="$(var.ProductVersion)" >
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." AllowSameVersionUpgrades="yes" />
+    <MediaTemplate EmbedCab="yes" />
+
+    <Feature Id="ProductFeature" Title="$(var.ProductName)" Level="1">
+      <ComponentRef Id="ProductComponent"/>
+    </Feature>
+  </Product>
+
+  <Fragment>
+    <Property Id="VS2012ROOTDIRECTORY">
+      <DirectorySearch Id="VS2012DIRECTORYSEARCH" AssignToProperty="yes" Path="[PersonalFolder]Visual Studio 2012" />
+    </Property>
+    
+    <Property Id="VS2013ROOTDIRECTORY">
+      <DirectorySearch Id="VS2013DIRECTORYSEARCH" AssignToProperty="yes" Path="[PersonalFolder]Visual Studio 2013" />
+    </Property>
+
+    <Property Id="VS2015ROOTDIRECTORY">
+      <DirectorySearch Id="VS2015DIRECTORYSEARCH" AssignToProperty="yes" Path="[PersonalFolder]Visual Studio 2015" />
+    </Property>
+
+    <Property Id="VS2017ROOTDIRECTORY">
+      <DirectorySearch Id="VS15DIRECTORYSEARCH" AssignToProperty="yes" Path="[PersonalFolder]Visual Studio 15" />
+      <DirectorySearch Id="VS2017DIRECTORYSEARCH" AssignToProperty="yes" Path="[PersonalFolder]Visual Studio 2017" />
+    </Property>
+    
+    <SetProperty Id="VS2012VISUALIZERSDIRECTORY" Value="[VS2012ROOTDIRECTORY]\Visualizers" After="AppSearch" Sequence="both">
+      VS2012ROOTDIRECTORY
+    </SetProperty>
+    
+    <SetProperty Id="VS2013VISUALIZERSDIRECTORY" Value="[VS2013ROOTDIRECTORY]\Visualizers" After="AppSearch" Sequence="both">
+      VS2013ROOTDIRECTORY
+    </SetProperty>
+    
+    <SetProperty Id="VS2015VISUALIZERSDIRECTORY" Value="[VS2015ROOTDIRECTORY]\Visualizers" After="AppSearch" Sequence="both">
+      VS2015ROOTDIRECTORY
+    </SetProperty>
+
+    <SetProperty Id="VS2017VISUALIZERSDIRECTORY" Value="[VS2017ROOTDIRECTORY]\Visualizers" After="AppSearch" Sequence="both">
+      VS2017ROOTDIRECTORY
+    </SetProperty>
+      
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="VendorFolder" Name="$(var.ProductManufacturer)">
+          <Directory Id="INSTALLFOLDER" Name="$(var.ProductName)">
+            <Component Id="ProductComponent" Guid="2D81B8A3-4B5E-4035-B1B7-67D838B511FE" KeyPath="yes">
+                                              
+              <File Id="BDT.Debugger.VS2012" Source="$(var.BinaryDecisionTree.Debugger.VS2012.TargetPath)">
+                <CopyFile Id="Copy.VS2012.BDT.Debugger" DestinationProperty="VS2012VISUALIZERSDIRECTORY" />
+              </File>
+
+              <File Id="BDT.Debugger.VS2013" Source="$(var.BinaryDecisionTree.Debugger.VS2013.TargetPath)">
+                <CopyFile Id="Copy.VS2013.BDT.Debugger" DestinationProperty="VS2013VISUALIZERSDIRECTORY" />
+              </File>
+
+              <File Id="BDT.Debugger.VS2015" Source="$(var.BinaryDecisionTree.Debugger.VS2015.TargetPath)">
+                <CopyFile Id="Copy.VS2015.BDT.Debugger" DestinationProperty="VS2015VISUALIZERSDIRECTORY" />
+              </File>
+              
+              <File Id="BDT.Debugger.VS2017" Source="$(var.BinaryDecisionTree.Debugger.VS2017.TargetPath)">
+                <CopyFile Id="Copy.VS2017.BDT.Debugger" DestinationProperty="VS2017VISUALIZERSDIRECTORY" />
+              </File>
+
+              <!-- This shouldn't be needed when VS 15 is out of preview. -->
+              <File Id="MS.VS.DebuggerVisualizers.VS2017" Source="$(var.BinaryDecisionTree.Debugger.VS2017.TargetDir)Microsoft.VisualStudio.DebuggerVisualizers.dll">
+                <CopyFile Id="Copy.VS2017.MS.VS.DebuggerVisualizers" DestinationProperty="VS2017VISUALIZERSDIRECTORY" />
+              </File>
+              
+              <File Id="BDT.Rendering" Source="$(var.BinaryDecisionTree.Rendering.TargetPath)">
+                <CopyFile Id="Copy.VS2012.BDT.Rendering" DestinationProperty="VS2012VISUALIZERSDIRECTORY" />
+                <CopyFile Id="Copy.VS2013.BDT.Rendering" DestinationProperty="VS2013VISUALIZERSDIRECTORY" />
+                <CopyFile Id="Copy.VS2015.BDT.Rendering" DestinationProperty="VS2015VISUALIZERSDIRECTORY" />
+                <CopyFile Id="Copy.VS2017.BDT.Rendering" DestinationProperty="VS2017VISUALIZERSDIRECTORY" />
+              </File>
+
+              <File Id="BDT.Structure" Source="$(var.BinaryDecisionTree.Structure.TargetPath)">
+                <CopyFile Id="Copy.VS2012.BDT.Structure" DestinationProperty="VS2012VISUALIZERSDIRECTORY" />
+                <CopyFile Id="Copy.VS2013.BDT.Structure" DestinationProperty="VS2013VISUALIZERSDIRECTORY" />
+                <CopyFile Id="Copy.VS2015.BDT.Structure" DestinationProperty="VS2015VISUALIZERSDIRECTORY" />
+                <CopyFile Id="Copy.VS2017.BDT.Structure" DestinationProperty="VS2017VISUALIZERSDIRECTORY" />
+              </File>
+
+              <File Id="BDT.Visitors" Source="$(var.BinaryDecisionTree.Visitors.TargetPath)">
+                <CopyFile Id="Copy.VS2012.BDT.Visitors" DestinationProperty="VS2012VISUALIZERSDIRECTORY" />
+                <CopyFile Id="Copy.VS2013.BDT.Visitors" DestinationProperty="VS2013VISUALIZERSDIRECTORY" />
+                <CopyFile Id="Copy.VS2015.BDT.Visitors" DestinationProperty="VS2015VISUALIZERSDIRECTORY" />
+                <CopyFile Id="Copy.VS2017.BDT.Visitors" DestinationProperty="VS2017VISUALIZERSDIRECTORY" />
+              </File>
+
+            <File Id="BDT.VisualStudio" Source="$(var.BinaryDecisionTree.VisualStudio.TargetPath)">
+                <CopyFile Id="Copy.VS2012.BDT.VisualStudio" DestinationProperty="VS2012VISUALIZERSDIRECTORY" />
+                <CopyFile Id="Copy.VS2013.BDT.VisualStudio" DestinationProperty="VS2013VISUALIZERSDIRECTORY" />
+                <CopyFile Id="Copy.VS2015.BDT.VisualStudio" DestinationProperty="VS2015VISUALIZERSDIRECTORY" />
+                <CopyFile Id="Copy.VS2017.BDT.VisualStudio" DestinationProperty="VS2017VISUALIZERSDIRECTORY" />
+              </File>
+            
+            </Component>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+
+  </Fragment>
+
+</Wix>

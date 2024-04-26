@@ -1,0 +1,24 @@
+
+Type: Tool
+
+Title: Expression Debug Visualizer
+
+Version: 1.1.0
+
+Summary
+--------------------------------------------------
+A debug visualizer that renders a lambda expression as a binary decision tree.
+
+Detail
+--------------------------------------------------
+Rendering complex lambda expressions as binary decision trees makes them easier to reason about for technical and non-technical users. Trace the flow through the decision tree following true and false branches at each node until a leaf is reached.
+Note: The expression must be bound to a variable to support debugging tool tips and, therefore, debug visualizers. 
+Usage: Hover over a lambda expression variable name whilst debugging to display its value in a tool tip. Click on the magnifying glass icon in the tool tip to load the Expression Debug Visualizer.
+
+
+Categories: Coding, Documentation, Modelling
+
+TODO
+--------------------------------------------------
+Screenshot
+Detail

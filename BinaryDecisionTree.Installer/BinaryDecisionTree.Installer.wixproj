@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>3.9</ProductVersion>
+    <ProjectGuid>37527d5e-e6e4-492f-b850-bfe67b6af07f</ProjectGuid>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputName>ExpressionDebugVisualizer</OutputName>
+    <OutputType>Package</OutputType>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DefineConstants>Debug</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Product.wxs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BinaryDecisionTree.Debugger.VS2012\BinaryDecisionTree.Debugger.VS2012.csproj">
+      <Name>BinaryDecisionTree.Debugger.VS2012</Name>
+      <Project>{665ac34b-b15b-42af-88fd-86b936e68501}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\BinaryDecisionTree.Debugger.VS2013\BinaryDecisionTree.Debugger.VS2013.csproj">
+      <Name>BinaryDecisionTree.Debugger.VS2013</Name>
+      <Project>{c9c0d4b1-a738-4ba2-9cc1-8432ff6f79e3}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\BinaryDecisionTree.Debugger.VS2015\BinaryDecisionTree.Debugger.VS2015.csproj">
+      <Name>BinaryDecisionTree.Debugger.VS2015</Name>
+      <Project>{36910d98-5b8f-4eae-8ea0-051498ee31a1}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\BinaryDecisionTree.Debugger.VS2017\BinaryDecisionTree.Debugger.VS2017.csproj">
+      <Name>BinaryDecisionTree.Debugger.VS2017</Name>
+      <Project>{fd92392f-1ac5-47d6-b405-705c76c2ae94}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\BinaryDecisionTree.Rendering\BinaryDecisionTree.Rendering.csproj">
+      <Name>BinaryDecisionTree.Rendering</Name>
+      <Project>{27a3dfd8-6f45-48e1-8acc-6cac8f76b0c4}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\BinaryDecisionTree.Structure\BinaryDecisionTree.Structure.csproj">
+      <Name>BinaryDecisionTree.Structure</Name>
+      <Project>{07e4b36e-7382-4259-b656-1aae421f56dc}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\BinaryDecisionTree.Visitors\BinaryDecisionTree.Visitors.csproj">
+      <Name>BinaryDecisionTree.Visitors</Name>
+      <Project>{93cc808d-c1fd-426b-87fd-98e4431effcd}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\BinaryDecisionTree.VisualStudio\BinaryDecisionTree.VisualStudio.csproj">
+      <Name>BinaryDecisionTree.VisualStudio</Name>
+      <Project>{06f7449b-e199-4e4f-bbe0-767ff2e40c30}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(WixTargetsPath)" />
+  <!--
+	To modify your build process, add your task inside one of the targets below and uncomment it.
+	Other similar extension points exist, see Wix.targets.
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	-->
+</Project>
